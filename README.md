@@ -6,11 +6,7 @@ This repository demonstrates different approaches to achieving multi-tenancy in 
 This folder contains various strategies for implementing multi-tenancy based on namespaces.
 
 ### capsule/
-- **additional-role-bindings.yaml**: Defines extra role bindings for tenant permissions.
-- **complete-tenant.yaml**: A full example of creating a tenant.
-- **group-of-tenant-profile.yaml**: Manages a group of tenants with profiles.
-- **tenant-profile.yaml**: Defines specific tenant profiles.
-- **view-only-tenant.yaml**: Example of creating tenants with view-only access.
+- Focuses on Capsule, which provides soft multi-tenancy, allowing tenant creation, user assignment, and isolation enforcement.
 
 ### kiosk/
 - Contains Kiosk resources for namespace isolation.
