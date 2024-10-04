@@ -2,7 +2,7 @@
 
 This repository demonstrates different approaches to achieving multi-tenancy in Kubernetes. Below is an overview of the directories and their purposes:
 
-## namespace-based /
+## namespace-based/
 This folder contains various strategies for implementing multi-tenancy based on namespaces.
 
 ### capsule/
@@ -17,9 +17,9 @@ This folder contains various strategies for implementing multi-tenancy based on 
 
 ### kubezoo/
 - Resources related to the KubeZoo multi-tenancy platform.
-- 
 
-## virtual-multi-cluster / 
+
+## virtual-multi-cluster/ 
 This folder contains resources for implementing virtual clusters and multi-cluster setups in Kubernetes to achieve hard multi-tenancy.
 
 ### capsule-proxy/
