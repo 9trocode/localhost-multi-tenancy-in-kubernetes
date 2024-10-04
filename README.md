@@ -19,16 +19,16 @@ This folder contains various strategies for implementing multi-tenancy based on 
 This folder contains resources for implementing virtual clusters and multi-cluster setups in Kubernetes to achieve hard multi-tenancy.
 
 ### capsule-proxy/
-Implements Capsule proxy in virtual clusters to manage multi-tenant environments effectively.
+- Implements Capsule proxy in virtual clusters to manage multi-tenant environments effectively.
 
 ##### gardener/
-Provides resources and configurations for managing multi-tenancy using Gardener, a solution for managing Kubernetes clusters across multiple cloud providers.
+- Provides resources and configurations for managing multi-tenancy using Gardener, a solution for managing Kubernetes clusters across multiple cloud providers.
 
 ### kamaji/
-Multi-tenancy solutions using Kamaji to manage lightweight Kubernetes control planes.
+- Multi-tenancy solutions using Kamaji to manage lightweight Kubernetes control planes.
 
 ### vCluster/
-Resources to create and manage virtual clusters using `vCluster`, providing isolated Kubernetes environments for tenants.
+- Resources to create and manage virtual clusters using `vCluster`, providing isolated Kubernetes environments for tenants.
 
 ---
 
