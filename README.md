@@ -2,7 +2,7 @@
 
 This repository demonstrates different approaches to achieving multi-tenancy in Kubernetes. Below is an overview of the directories and their purposes:
 
-## namespace-based/
+## namespace-based /
 This folder contains various strategies for implementing multi-tenancy based on namespaces.
 
 ### capsule/
