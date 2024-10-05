@@ -1,10 +1,24 @@
+# Define the API version for the Tenant resource
 apiVersion: tenant.kubezoo.io/v1alpha1
+
+# Specify the kind of resource being defined
 kind: Tenant
+
+# Metadata section for the Tenant
 metadata:
+  # Name of the Tenant resource
   name: "team-sre019-dev-playground"
+
+# Specification section for the Tenant
 spec:
+  # Unique identifier for the Tenant
   id: team-sre019-dev-playground
+
+  # Define resource quotas for the Tenant
   quota:
+    # Hard limits for resource usage
     hard:
+      # CPU limit set to 2 cores
       cpu: "2"
+      # Memory limit set to 2 gigabytes
       memory: 2G
