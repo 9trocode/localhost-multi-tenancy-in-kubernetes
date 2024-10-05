@@ -1,0 +1,10 @@
+apiVersion: tenant.kubezoo.io/v1alpha1
+kind: Tenant
+metadata:
+  name: "team-sre019-dev-playground"
+spec:
+  id: team-sre019-dev-playground
+  quota:
+    hard:
+      cpu: "2"
+      memory: 2G
