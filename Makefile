@@ -7,4 +7,4 @@ PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 
 .PHONY: local-cluster
 local-up: ## Setup kubezoo a kind cluster locally
-	bash hack/make-rules/setup-cluster.sh
+	bash ./setup-cluster.sh
