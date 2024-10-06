@@ -1,0 +1,43 @@
+# This YAML defines a Tenant resource for the Capsule multi-tenancy operator
+# The Tenant resource is used to logically partition a Kubernetes cluster
+
+apiVersion: capsule.clastix.io/v1beta2
+kind: Tenant
+metadata:
+  name: oil  # Unique name for this Tenant
+
+spec:
+  # Owners section defines who has administrative access to this Tenant
+  # Multiple owners of different types can be specified
+  owners:
+    # Each owner is defined by a 'name' and 'kind'
+    # 'kind' can be one of: User, Group, or ServiceAccount
+    - name: alice
+      kind: User  # This grants user 'alice' administrative access to the Tenant
+
+  # Additional Tenant specifications can be added here, such as:
+  # - namespaceOptions: to set quota and metadata for namespaces in this Tenant
+  # - resourceQuota: to set resource limits for the entire Tenant
+  # - nodeSelector: to control which nodes Pods in this Tenant can be scheduled on
+  # - storageClasses: to limit which storage classes can be used
+  # - ingressOptions: to control Ingress behavior for the Tenant
+  # - containerRegistries: to restrict which container registries can be used
+  # - networkPolicies: to define network isolation rules
+  # - imagePullPolicies: to control how container images are pulled
+  # - priorityClasses: to limit which priority classes can be used
+  # - ...and more, depending on your specific requirements and Capsule version
+
+  # Example of additional configurations:
+  # namespaceOptions:
+  #   quota: 10  # Maximum number of namespaces allowed in this Tenant
+  # resourceQuota:
+  #   scope: Tenant
+  #   items:
+  #     - hard:
+  #         requests.cpu: "4"
+  #         limits.cpu: "8"
+  #         requests.memory: 8Gi
+  #         limits.memory: 16Gi
+
+# Note: The actual configuration should be tailored to your specific needs and environment
+# Consult the Capsule documentation for all available options and their meanings

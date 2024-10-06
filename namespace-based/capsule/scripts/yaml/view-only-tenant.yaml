@@ -1,0 +1,36 @@
+# This YAML defines a Tenant resource for the Capsule multi-tenancy operator in Kubernetes
+# The Tenant resource is used to logically partition a Kubernetes cluster and set policies
+
+apiVersion: capsule.clastix.io/v1beta2  # Specifies the API version of the Capsule Tenant resource
+kind: Tenant                            # Indicates that this is a Tenant resource
+metadata:
+  name: oil                             # Unique identifier for this Tenant
+
+spec:
+  # Owners section defines who has administrative access to this Tenant
+  # Multiple owners can be specified, and they can be of different types (User, Group, or ServiceAccount)
+  owners:
+    - name: alice                       # First owner
+      kind: User                        # Specifies that 'alice' is a User type owner
+    - name: joe                         # Second owner
+      kind: User                        # Specifies that 'joe' is also a User type owner
+
+  # ClusterRoles section defines the Kubernetes roles that will be assigned to all owners of this Tenant
+  # These roles determine what actions the owners can perform within the Tenant
+  clusterRoles:
+    - view                              # Assigns the 'view' ClusterRole to all owners
+                                        # The 'view' role typically provides read-only access to most Kubernetes resources
+
+  # Additional Tenant specifications can be added here, such as:
+  # - namespaceOptions: to set quota and metadata for namespaces in this Tenant
+  # - resourceQuota: to set resource limits for the entire Tenant
+  # - nodeSelector: to control which nodes Pods in this Tenant can be scheduled on
+  # - storageClasses: to limit which storage classes can be used
+  # - ingressOptions: to control Ingress behavior for the Tenant
+  # - networkPolicies: to define network isolation rules
+  # - imagePullPolicies: to control how container images are pulled
+  # - and more, depending on your specific requirements and Capsule version
+
+# Note: This configuration provides a basic setup for the 'oil' Tenant.
+# It should be expanded with additional specifications based on your specific needs and security requirements.
+# Consult the Capsule documentation for all available options and their meanings.F
