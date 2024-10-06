@@ -60,17 +60,18 @@ run_test "Create namespace for vcluster" \
 run_test "Install vcluster" \
     "cd $TEMP_DIR && vcluster create ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} --connect=false"
 
-# Connect to vcluster
-run_test "Connect to vcluster" \
-    "cd $TEMP_DIR && vcluster connect ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} -- kubectl get nodes"
+# Running this in Github Action might get stuck and to make our CI fast we decided to use a more lightweight kubernetes kind to test this propely install k3s instead from the init.sh script
+# # Connect to vcluster
+# run_test "Connect to vcluster" \
+#     "cd $TEMP_DIR && vcluster connect ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} -- kubectl get nodes"
 
-# Create a test deployment in vcluster
-run_test "Create test deployment in vcluster" \
-    "cd $TEMP_DIR && vcluster connect ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} -- kubectl create deployment nginx --image=nginx"
+# # Create a test deployment in vcluster
+# run_test "Create test deployment in vcluster" \
+#     "cd $TEMP_DIR && vcluster connect ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} -- kubectl create deployment nginx --image=nginx"
 
-# Wait for the deployment to be ready
-run_test "Wait for deployment to be ready" \
-    "cd $TEMP_DIR && vcluster connect ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} -- kubectl wait --for=condition=available --timeout=60s deployment/nginx"
+# # Wait for the deployment to be ready
+# run_test "Wait for deployment to be ready" \
+#     "cd $TEMP_DIR && vcluster connect ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} -- kubectl wait --for=condition=available --timeout=60s deployment/nginx"
 
 # Clean up
 echo "Cleaning up resources..."

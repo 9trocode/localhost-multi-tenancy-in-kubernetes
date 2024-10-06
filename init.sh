@@ -55,7 +55,7 @@ local_cluster() {
     kubectl get nodes
 
     bash ./namespace-based/setup.sh
-    
+
     bash ./virtual-multi-cluster/setup.sh
 
 
@@ -63,6 +63,22 @@ local_cluster() {
     # how to use the context
     # kubectl --context "kind-${CLUSTER_NAME}" port-forward svc/kubezoo 6443:6443
 
+}
+
+install_k3s() {
+    log "Installing K3s..."
+    curl -sfL https://get.k3s.io | sh -
+    sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+    export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+    success "K3s installed successfully"
+}
+
+wait_for_k3s() {
+    log "Waiting for K3s to be ready..."
+    while ! kubectl get nodes | grep -q "Ready"; do
+        sleep 5
+    done
+    success "K3s is ready"
 }
 
 e2e() {
