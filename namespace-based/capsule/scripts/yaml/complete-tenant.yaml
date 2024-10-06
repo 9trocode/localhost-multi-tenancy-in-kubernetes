@@ -21,7 +21,7 @@ spec:
     quota: {}  # No specific quota set for namespaces
     additionalMetadata:
       labels:
-        capsule.clastix.io/tenant: default-cluster
+        capsule.clastix.io/tenant: default-tenant-sentinel
         # Pod Security Standards labels
         pod-security.kubernetes.io/enforce: baseline
         pod-security.kubernetes.io/audit: restricted
@@ -31,7 +31,7 @@ spec:
   serviceOptions:
     additionalMetadata:
       labels:
-        capsule.clastix.io/tenant: default-cluster
+        capsule.clastix.io/tenant: default-tenant-sentinel
     allowedServices:
       nodePort: true
       externalName: true
@@ -41,7 +41,7 @@ spec:
   podOptions:
     additionalMetadata:
       labels:
-        capsule.clastix.io/tenant: default-cluster
+        capsule.clastix.io/tenant: default-tenant-sentinel
 
   # IngressOptions define settings for Ingresses within this Tenant
   ingressOptions:
@@ -58,7 +58,7 @@ spec:
           - from:
               - namespaceSelector:
                   matchLabels:
-                    capsule.clastix.io/tenant: default-cluster
+                    capsule.clastix.io/tenant: default-tenant-sentinel
               - namespaceSelector:
                   matchExpressions:
                     - key: kubernetes.io/metadata.name
@@ -76,16 +76,13 @@ spec:
         policyTypes: [Ingress, Egress]
 
   # ResourceQuota sets resource limits for the entire Tenant
-  resourceQuota:
-    scope: Tenant
+  resourceQuotas:
     items:
       - hard:
-          limits.cpu: "1000m"       # Max CPU limit: 4 cores
-          limits.memory: "1Gi"      # Max memory limit: 8 GB
-          requests.cpu: "500m"     # Max CPU request: 2 cores
-          requests.memory: "1Gi"    # Max memory request: 4 GB
-          requests.storage: "1Gi" # Max storage request: 100 GB
-          pods: "5"                # Max number of pods: 20
+          limits.cpu: '4'
+          limits.memory: 4Gi
+          pods: '5'
+          requests.storage: 20Gi
 
   # ImagePullPolicies restrict which pull policies can be used for containers
   imagePullPolicies:

@@ -15,12 +15,6 @@ spec:
     - name: joe                         # Second owner
       kind: User                        # Specifies that 'joe' is also a User type owner
 
-  # ClusterRoles section defines the Kubernetes roles that will be assigned to all owners of this Tenant
-  # These roles determine what actions the owners can perform within the Tenant
-  clusterRoles:
-    - view                              # Assigns the 'view' ClusterRole to all owners
-                                        # The 'view' role typically provides read-only access to most Kubernetes resources
-
   # Additional Tenant specifications can be added here, such as:
   # - namespaceOptions: to set quota and metadata for namespaces in this Tenant
   # - resourceQuota: to set resource limits for the entire Tenant
