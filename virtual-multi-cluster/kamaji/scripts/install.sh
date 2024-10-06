@@ -51,7 +51,8 @@ install_kamaji() {
     log "Installing Kamaji from Helm repository..."
     helm repo add clastix https://clastix.github.io/charts
     helm repo update
-    helm install kamaji clastix/kamaji -n kamaji-system --create-namespace
+    helm upgrade --install --namespace kamaji-system --create-namespace clastix/kamaji
+    helm status kamaji -n kamaji-system
     success "Kamaji installed from Helm repository"
 }
 
