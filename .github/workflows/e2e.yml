@@ -41,7 +41,12 @@ jobs:
         run: make local-cluster
 
       - name: Run E2E tests
-        run: make e2e
+        run: |
+          set -euo pipefail
+          make e2e
+        shell: bash
+        env:
+          SHELL: /bin/bash
 
       - name: Cleanup
         if: always()
