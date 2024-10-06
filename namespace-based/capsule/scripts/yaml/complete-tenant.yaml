@@ -1,97 +1,95 @@
-# This YAML defines a Tenant resource for the Capsule multi-tenancy operator in Kubernetes
-# The Tenant resource is used to logically partition a Kubernetes cluster and set policies
-
 apiVersion: capsule.clastix.io/v1beta2
 kind: Tenant
 metadata:
-  name: default-tenant-sentinel  # Unique identifier for this Tenant
-
+  labels:
+    kubernetes.io/metadata.name: acoustic-stick
+  name: acoustic-stick
 spec:
-  # Owners section defines who has administrative access to this Tenant
-  owners:
-    - name: joe                         # Second owner
-      kind: User 
-      # ClusterRoles assigned to the ServiceAccount within this Tenant
-      clusterRoles:
-        - admin
-        - capsule-namespace-deleter
-
-  # NamespaceOptions define settings for namespaces within this Tenant
-  namespaceOptions:
-    quota: 2  # No specific quota set for namespaces
-    additionalMetadata:
-      labels:
-        capsule.clastix.io/tenant: default-tenant-sentinel
-        # Pod Security Standards labels
-        pod-security.kubernetes.io/enforce: baseline
-        pod-security.kubernetes.io/audit: restricted
-        pod-security.kubernetes.io/warn: restricted
-
-  # ServiceOptions define settings for Services within this Tenant
-  serviceOptions:
-    additionalMetadata:
-      labels:
-        capsule.clastix.io/tenant: default-tenant-sentinel
-    allowedServices:
-      nodePort: true
-      externalName: true
-      loadBalancer: false  # Prevents creation of LoadBalancer services
-
-  # PodOptions define settings for Pods within this Tenant
-  podOptions:
-    additionalMetadata:
-      labels:
-        capsule.clastix.io/tenant: default-tenant-sentinel
-
-  # IngressOptions define settings for Ingresses within this Tenant
-  ingressOptions:
-    hostnameCollisionScope: Tenant  # Prevents hostname collisions within the Tenant
-
-  # NodeSelector restricts which nodes Pods in this Tenant can be scheduled on
-  # nodeSelector:
-  #   doks.digitalocean.com/node-pool: default-pool
-
-  # NetworkPolicies define network isolation rules for the Tenant
-  networkPolicies:
-    items:
-      - ingress:
-          - from:
-              - namespaceSelector:
-                  matchLabels:
-                    capsule.clastix.io/tenant: default-tenant-sentinel
-              - namespaceSelector:
-                  matchExpressions:
-                    - key: kubernetes.io/metadata.name
-                      operator: In
-                      values: [ingress-nginx]
-              - namespaceSelector:
-                  matchExpressions:
-                    - key: kubernetes.io/metadata.name
-                      operator: In
-                      values: [kube-system]
-          - podSelector:
-              matchLabels:
-                  managed-by: operator
-        egress: [{}]  # Allow all egress traffic
-        policyTypes: [Ingress, Egress]
-
-  # ResourceQuota sets resource limits for the entire Tenant
-  resourceQuotas:
-    items:
-      - hard:
-          limits.cpu: '4'
-          limits.memory: 4Gi
-          pods: '5'
-          requests.storage: 20Gi
-
-  # ImagePullPolicies restrict which pull policies can be used for containers
+  cordoned: false
   imagePullPolicies:
     - Always
     - Never
     - IfNotPresent
-
-  cordoned: false        # If true, prevents creation of new namespaces in the Tenant
-  preventDeletion: false # If true, prevents deletion of the Tenant
-
-# Note: This configuration should be tailored to your specific needs and environment.
-# Consult the Capsule documentation for all available options and their meanings.
+  ingressOptions:
+    hostnameCollisionScope: Tenant
+  limitRanges: {}
+  namespaceOptions:
+    additionalMetadata:
+      labels:
+        capsule.clastix.io/tenant: acoustic-stick
+    forbiddenAnnotations: {}
+    forbiddenLabels: {}
+    quota: 10
+  networkPolicies:
+    items:
+      - egress:
+          - {}
+        ingress:
+          - from:
+              - namespaceSelector:
+                  matchLabels:
+                    capsule.clastix.io/tenant: acoustic-stick
+              - namespaceSelector:
+                  matchExpressions:
+                    - key: kubernetes.io/metadata.name
+                      operator: In
+                      values:
+                        - ingress-nginx
+              - namespaceSelector:
+                  matchExpressions:
+                    - key: kubernetes.io/metadata.name
+                      operator: In
+                      values:
+                        - kube-system
+              - podSelector:
+                  matchLabels:
+                    managed-by: operator
+        podSelector: {}
+        policyTypes:
+          - Ingress
+          - Egress
+  owners:
+    - clusterRoles:
+        - admin
+        - capsule-namespace-deleter
+      name: bob
+      kind: User  # This grants user 'bob' administrative access to the Tenant
+      proxySettings:
+        - kind: IngressClasses
+          operations:
+            - List
+        - kind: Nodes
+          operations:
+            - List
+        - kind: StorageClasses
+          operations:
+            - List
+        - kind: PriorityClasses
+          operations:
+            - List
+        - kind: PersistentVolumes
+          operations:
+            - List
+  podOptions:
+    additionalMetadata:
+      labels:
+        capsule.clastix.io/tenant: acoustic-stick
+  preventDeletion: false
+  resourceQuotas:
+    items:
+      - hard:
+          limits.cpu: '2'
+          limits.memory: 2Gi
+          pods: '10'
+          requests.storage: 10Gi
+    scope: Tenant
+  serviceOptions:
+    additionalMetadata:
+      labels:
+        capsule.clastix.io/tenant: acoustic-stick
+    allowedServices:
+      externalName: true
+      loadBalancer: false
+      nodePort: true
+    forbiddenAnnotations: {}
+    forbiddenLabels: {}
