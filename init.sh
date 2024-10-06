@@ -55,6 +55,7 @@ local_cluster() {
     kubectl get nodes
 
     bash ./namespace-based/setup.sh
+    bash ./namespace-based/uninstall.sh
 
     bash ./virtual-multi-cluster/setup.sh
 
