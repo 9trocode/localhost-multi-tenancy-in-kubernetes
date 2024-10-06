@@ -6,7 +6,7 @@ Ahoy, future Pirate King of Kubernetes! Welcome aboard the Thousand Sunny of mul
 
 ### 🏝️ East Blue: namespace-based/
 
-In these calm waters, we explore the basics of multi-tenancy:
+Explore namespace-based multi-tenancy strategies:
 
 - **Capsule**: Implements soft multi-tenancy, enabling secure tenant creation and isolation.
 - **Kiosk**: Provides resources for effective namespace isolation.
