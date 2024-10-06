@@ -9,7 +9,7 @@ ENVTEST_K8S_VERSION = 1.31
 # go-get-tool will 'go get' any package $2 and install it to $1.
 PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 
-.PHONY: local-cluster
+.PHONY: setup-cluster
 local-cluster: ## Setup a cluster using kind locally
 	@bash -c 'source ./init.sh && local_cluster'
 	
