@@ -11,8 +11,8 @@ local-cluster: ## Setup a cluster using kind locally
 
 .PHONY: e2e
 e2e: ## Run Test
-	@bash -c 'source ./init.sh && e2e'
-
+	@bash -c 'set -euo pipefail; source ./init.sh && e2e'
+	
 .PHONY: cleanup
 cleanup: ## Call the cleanup function from init.sh
 	@echo "Running cleanup..."
