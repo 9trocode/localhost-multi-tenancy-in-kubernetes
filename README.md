@@ -53,8 +53,9 @@ These variables are exported automatically in the Makefile.
 To set up a Kubernetes cluster locally using `kind`, run:
 
 ```bash
-make local-cluster
-
+make setup-cluster
+make 
+```
 
 ---
 
