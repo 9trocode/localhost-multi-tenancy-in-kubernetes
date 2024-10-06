@@ -70,5 +70,4 @@ if [ $TESTS_RUN -eq $TESTS_PASSED ]; then
     echo -e "${GREEN}All tests passed!${NC}"
 else
     echo -e "${RED}Some tests failed.${NC}"
-    exit 0
 fi

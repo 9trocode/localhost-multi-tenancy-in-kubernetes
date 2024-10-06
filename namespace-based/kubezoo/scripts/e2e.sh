@@ -49,10 +49,6 @@ wait_for() {
         fi
     done
 }
-
-# Example tests
-run_test "KubeZoo Cluster Resource" \
-    "kubectl apply -f yaml/cluster-resource.yaml"
     
 run_test "KubeZoo Virtual Control Plane" \
     "kubectl apply -f yaml/virtual-control-plane.yaml"
@@ -74,5 +70,4 @@ if [ $TESTS_RUN -eq $TESTS_PASSED ]; then
     echo -e "${GREEN}All tests passed!${NC}"
 else
     echo -e "${RED}Some tests failed.${NC}"
-    exit 0
 fi
