@@ -75,8 +75,8 @@ run_test "Wait for deployment to be ready" \
 
 # Clean up
 echo "Cleaning up resources..."
-vcluster delete ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE}
-kubectl delete namespace ${VCLUSTER_NAMESPACE}
+vcluster delete ${VCLUSTER_NAME}
+
 
 # Print test summary
 echo "Tests run: $TESTS_RUN"
