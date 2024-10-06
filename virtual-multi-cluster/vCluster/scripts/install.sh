@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+# Change to the directory of the script
+cd "$(dirname "$0")"
+
 # Default values
 RELEASE_NAME="my-vcluster"
 NAMESPACE="vcluster"
@@ -57,14 +60,14 @@ if [ "$CHART_VERSION" != "latest" ]; then
 fi
 
 # Add values files to the command
-for values_file in "${VALUES_FILES[@]}"; do
-    if [ -f "$values_file" ]; then
-        HELM_CMD="$HELM_CMD -f $values_file"
-    else
-        echo "Error: Values file $values_file not found."
-        exit 1
-    fi
-done
+# for values_file in "${VALUES_FILES[@]}"; do
+#     if [ -f "$values_file" ]; then
+#         HELM_CMD="$HELM_CMD -f $values_file"
+#     else
+#         echo "Error: Values file $values_file not found."
+#         exit 1
+#     fi
+# done
 
 # Install vcluster
 echo "Installing vcluster with command:"
