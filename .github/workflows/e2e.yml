@@ -27,6 +27,9 @@ jobs:
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
 
+          curl -L -o vcluster "https://github.com/loft-sh/vcluster/releases/latest/download/vcluster-linux-amd64" && install -c -m 0755 vcluster /usr/local/bin && rm -f vcluster
+
+
           # Install Kind
           curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
           chmod +x ./kind
