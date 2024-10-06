@@ -71,6 +71,7 @@ install_k3s() {
     sudo chmod 644 /etc/rancher/k3s/k3s.yaml
     export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
     success "K3s installed successfully"
+    wait_for_k3s
 }
 
 wait_for_k3s() {

@@ -12,6 +12,10 @@ PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 .PHONY: local-cluster
 local-cluster: ## Setup a cluster using kind locally
 	@bash -c 'source ./init.sh && local_cluster'
+	
+.PHONY: install_k3s
+install_k3s: ## Setup a cluster using kind locally
+	@bash -c 'source ./init.sh && install_k3s'
 
 .PHONY: e2e
 e2e: ## Run Test
