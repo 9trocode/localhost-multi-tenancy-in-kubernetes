@@ -69,9 +69,9 @@ spec:
                     - key: kubernetes.io/metadata.name
                       operator: In
                       values: [kube-system]
-              - podSelector:
-                  matchLabels:
-                    managed-by: operator
+          - podSelector:
+              matchLabels:
+                  managed-by: operator
         egress: [{}]  # Allow all egress traffic
         policyTypes: [Ingress, Egress]
 
