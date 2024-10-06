@@ -37,7 +37,7 @@ install_cert_manager() {
     log "Installing cert-manager..."
     helm repo add jetstack https://charts.jetstack.io
     helm repo update
-    helm install \
+    helm upgrade --install \
     cert-manager jetstack/cert-manager \
     --namespace cert-manager \
     --create-namespace \
@@ -54,7 +54,7 @@ install_kamaji() {
     log "Installing Kamaji from Helm repository..."
     helm repo add clastix https://clastix.github.io/charts
     helm repo update
-    helm install kamaji clastix/kamaji -n kamaji-system --create-namespace --values values.yaml
+    helm upgrade --install kamaji clastix/kamaji -n kamaji-system --create-namespace --values ./values.yaml
     helm status kamaji -n kamaji-system
     success "Kamaji installed from Helm repository"
 }
