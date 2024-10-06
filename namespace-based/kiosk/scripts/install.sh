@@ -4,8 +4,6 @@ set -e  # Exit immediately if a command exits with a non-zero status
 # Change to the directory of the script
 cd "$(dirname "$0")"
 
-source "./auth-check.sh"
-
 # Function to check if a command exists
 command_exists() {
     command -v "$1" >/dev/null 2>&1
