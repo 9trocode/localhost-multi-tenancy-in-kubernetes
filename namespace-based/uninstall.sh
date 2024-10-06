@@ -1,3 +1,5 @@
-helm uninstall kiosk loft/kiosk --namespace kiosk 
-helm uninstall capsule capsule/capsule \
-    --namespace capsule-system
+# Uninstall kiosk
+helm uninstall kiosk --namespace kiosk
+
+# Uninstall capsule
+helm uninstall capsule --namespace capsule-system
