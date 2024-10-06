@@ -4,7 +4,7 @@ Ahoy, future Pirate King of Kubernetes! Welcome aboard the Thousand Sunny of mul
 
 ## 🗺️ Project Layout
 
-### 🏝️ East Blue: namespace-based/
+### 🏝️ East Blue: Namespace-based/
 
 Explore namespace-based multi-tenancy strategies / tools:
 
@@ -12,7 +12,7 @@ Explore namespace-based multi-tenancy strategies / tools:
 - **Kiosk**: Provides resources for effective namespace isolation.
 - **KubeZoo**: Offers a platform for managing multi-tenant environments.
 
-### 🌋 Grand Line: virtual-multi-cluster/
+### 🌋 Grand Line: Virtual-multi-cluster/
 
 Discover advanced multi-tenancy with virtual and multi-cluster tools:
 
