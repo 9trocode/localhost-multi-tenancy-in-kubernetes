@@ -6,7 +6,7 @@ RED='\033[0;31m'
 YELLOW='\033[0;33m'
 NC='\033[0m'
 
-KAMAJI_VERSION="v0.3.0"  # Update this to the latest version as needed
+KAMAJI_VERSION="v1.0.0"  # Update this to the latest version as needed
 CERT_MANAGER_VERSION="v1.8.0"  # Update this to the latest version as needed
 
 log() {
