@@ -7,6 +7,7 @@ cd "$(dirname "$0")"
 # Define the scripts to run
 SETUP_SCRIPTS=(
     "./vcluster/scripts/install.sh"
+    "./kamaji/scripts/install.sh"
 )
 
 # Function to run a script if it exists
