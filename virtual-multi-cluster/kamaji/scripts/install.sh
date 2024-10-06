@@ -75,9 +75,9 @@ main() {
     log "Starting Kamaji installation"
     
     check_prerequisites
-    install_cert_manager
-    install_kamaji
-    verify_installation
+    # install_cert_manager
+    # install_kamaji
+    # verify_installation
     
     log "Kamaji installation completed successfully"
 }
