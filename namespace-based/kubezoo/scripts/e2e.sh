@@ -53,6 +53,9 @@ wait_for() {
 run_test "KubeZoo Virtual Control Plane" \
     "kubectl apply -f yaml/virtual-control-plane.yaml"
 
+run_test "Port Forward Control Plane" \
+    "./port-forward.sh"    
+
 run_test "Create KubeZoo Tenant" \
     "kubectl apply -f yaml/tenant.yaml"    
 
