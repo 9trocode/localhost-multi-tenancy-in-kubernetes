@@ -8,7 +8,7 @@ cd "$(dirname "$0")"
 # Define the scripts to run
 SETUP_SCRIPTS=(
     "./capsule/scripts/e2e.sh"
-    # "./kiosk/scripts/e2e.sh"
+    "./kiosk/scripts/e2e.sh"
     # "./kubezoo/scripts/e2e.sh"
 )
 
