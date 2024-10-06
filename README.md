@@ -1,6 +1,6 @@
 # 🏴‍☠️ The Grand Line of Kubernetes Multi-Tenancy 🌊
 
-Ahoy, future Pirate King of Kubernetes! Welcome aboard the Thousand Sunny of multi-tenancy. This treasure map will guide you through the treacherous waters of tenant isolation and resource management. Prepare to set sail across the Blues of namespace-based solutions and brave the New World of virtual multi-clusters!
+Ahoy, future Pirate King of Kubernetes! Welcome aboard the Thousand Sunny of multi-tenancy. This repository demonstrates different approaches to achieving multi-tenancy in Kubernetes. Below is an overview of the directories and their purposes:
 
 ## 🗺️ Project Layout
 
