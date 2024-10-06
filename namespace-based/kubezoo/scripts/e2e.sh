@@ -2,6 +2,8 @@
 # Set strict mode
 set -euo pipefail
 
+ZOO_ROOT="$(pwd)/_output"
+
 # Change to the directory of the script
 cd "$(dirname "$0")"
 
