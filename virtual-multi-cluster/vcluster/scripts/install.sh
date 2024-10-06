@@ -46,6 +46,7 @@ helm repo update
 if ! kubectl get namespace "$NAMESPACE" &> /dev/null; then
     echo "Creating namespace $NAMESPACE..."
     kubectl create namespace "$NAMESPACE"
+    curl -L -o vcluster "https://github.com/loft-sh/vcluster/releases/latest/download/vcluster-linux-amd64" && sudo install -c -m 0755 vcluster /usr/local/bin && rm -f vcluster
 fi
 
 # Prepare the Helm install command
