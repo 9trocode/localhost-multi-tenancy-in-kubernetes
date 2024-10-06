@@ -42,7 +42,7 @@ preflight() {
 local_cluster() {
     echo "Creating the kind cluster $CLUSTER_NAME..."
     if kind get clusters | grep "${CLUSTER_NAME}"; then
-        # cleanup && kind create cluster --name "${CLUSTER_NAME}"
+        cleanup && kind create cluster --name "${CLUSTER_NAME}"
         continue
     else
         kind create cluster --name "${CLUSTER_NAME}"

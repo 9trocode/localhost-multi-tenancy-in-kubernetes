@@ -60,4 +60,4 @@ main() {
 
 # Run main function
 main
-exit $?
+# exit $?
