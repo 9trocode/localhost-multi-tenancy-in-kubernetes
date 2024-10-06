@@ -24,36 +24,21 @@ else
     echo "Warning: auth-check.sh not found. Skipping authentication check."
 fi
 
-# Check Capsule webhook status
-echo "Checking Capsule webhook status..."
-if ! kubectl get pods -n capsule-system -l app=capsule-webhook -o jsonpath='{.items[0].status.phase}' | grep -q "Running"; then
-    echo "Error: Capsule webhook is not running. Please check the Capsule installation."
+# Check Capsule installation
+echo "Checking Capsule installation..."
+if ! kubectl get namespace capsule-system &>/dev/null; then
+    echo "Error: Capsule namespace not found. Please install Capsule first."
     exit 1
 fi
 
-# Create a dedicated namespace for Kiosk
-kubectl create namespace kiosk --dry-run=client -o yaml | kubectl apply -f -
-
-# Add the Helm repository
-helm repo add devspace https://charts.devspace.sh/
-helm repo update
-
-# Install Kiosk using Helm v3
-if ! helm install kiosk devspace/kiosk --namespace kiosk --atomic; then
-    echo "Error: Kiosk installation failed"
+if ! kubectl get deployment -n capsule-system capsule-controller-manager &>/dev/null; then
+    echo "Error: Capsule deployment not found. Please check Capsule installation."
     exit 1
 fi
 
-# Verify the Kiosk pod is running
-kubectl get pod -n kiosk
-
-# Wait for the pod to be ready
-if ! kubectl wait --for=condition=ready pod -l app=kiosk -n kiosk --timeout=120s; then
-    echo "Error: Kiosk pod did not become ready within the timeout period"
+# Wait for Capsule webhook to be ready
+echo "Waiting for Capsule webhook to be ready..."
+if ! kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=capsule -n capsule-system --timeout=120s; then
+    echo "Error: Capsule webhook did not become ready within the timeout period"
     exit 1
 fi
-
-# Display Kiosk version and status
-helm status kiosk -n kiosk
-
-echo "Kiosk installation completed successfully"
