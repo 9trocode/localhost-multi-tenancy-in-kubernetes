@@ -18,7 +18,7 @@ spec:
 
   # NamespaceOptions define settings for namespaces within this Tenant
   namespaceOptions:
-    quota: {}  # No specific quota set for namespaces
+    quota: 2  # No specific quota set for namespaces
     additionalMetadata:
       labels:
         capsule.clastix.io/tenant: default-tenant-sentinel
