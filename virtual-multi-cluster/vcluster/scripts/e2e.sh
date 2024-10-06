@@ -55,7 +55,7 @@ run_test "Create namespace for vcluster" \
 
 # Install vcluster
 run_test "Install vcluster" \
-    "vcluster create ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE}"
+    "vcluster create ${VCLUSTER_NAME}
 
 # Wait for vcluster to be ready
 run_test "Wait for vcluster to be ready" \
@@ -63,15 +63,15 @@ run_test "Wait for vcluster to be ready" \
 
 # Connect to vcluster
 run_test "Connect to vcluster" \
-    "vcluster connect ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} -- kubectl get nodes"
+    "vcluster connect ${VCLUSTER_NAME} -- kubectl get nodes"
 
 # Create a test deployment in vcluster
 run_test "Create test deployment in vcluster" \
-    "vcluster connect ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} -- kubectl create deployment nginx --image=nginx"
+    "vcluster connect ${VCLUSTER_NAME} -- kubectl create deployment nginx --image=nginx"
 
 # Wait for the deployment to be ready
 run_test "Wait for deployment to be ready" \
-    "vcluster connect ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} -- kubectl wait --for=condition=available --timeout=60s deployment/nginx"
+    "vcluster connect ${VCLUSTER_NAME} -- kubectl wait --for=condition=available --timeout=60s deployment/nginx"
 
 # Clean up
 echo "Cleaning up resources..."
