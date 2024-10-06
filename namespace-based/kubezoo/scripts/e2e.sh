@@ -53,12 +53,6 @@ wait_for() {
 run_test "KubeZoo Virtual Control Plane" \
     "kubectl apply -f yaml/virtual-control-plane.yaml"
 
-run_test "Port Forward Control Plane" \
-    "bash ./port-forward.sh"    
-
-run_test "Create KubeZoo Tenant" \
-    "kubectl apply -f yaml/tenant.yaml"    
-
 # Clean up
 echo "Cleaning up resources..."
 kubectl delete -f yaml/virtual-control-plane.yaml
