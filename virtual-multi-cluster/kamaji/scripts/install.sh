@@ -40,7 +40,7 @@ install_cert_manager() {
     success "cert-manager installed successfully"
 }
 
-install_kamaji_from_repo() {
+install_kamaji() {
     log "Installing Kamaji from Helm repository..."
     helm repo add clastix https://clastix.github.io/charts
     helm repo update
