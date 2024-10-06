@@ -32,6 +32,11 @@ jobs:
         chmod +x ./kind
         sudo mv ./kind /usr/local/bin/kind
 
+        # Install cfssl and cfssljson
+        go install github.com/cloudflare/cfssl/cmd/cfssl@latest
+        go install github.com/cloudflare/cfssl/cmd/cfssljson@latest
+        echo "$HOME/go/bin" >> $GITHUB_PATH
+
     - name: Setup local cluster
       run: make local-cluster
 
