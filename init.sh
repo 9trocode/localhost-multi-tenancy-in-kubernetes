@@ -53,17 +53,6 @@ local_cluster() {
     bash lib/gen_pki.sh gen_pki_setup_ctx
 
     kubectl get nodes
-
-    bash ./namespace-based/setup.sh
-    bash ./namespace-based/uninstall.sh
-
-    bash ./virtual-multi-cluster/setup.sh
-
-
-
-    # how to use the context
-    # kubectl --context "kind-${CLUSTER_NAME}" port-forward svc/kubezoo 6443:6443
-
 }
 
 install_k3s() {
@@ -84,7 +73,15 @@ wait_for_k3s() {
 }
 
 e2e() {
+    local_cluster
+    echo "Running e2e tests for namespace based multi-tenancy"
+    bash ./namespace-based/setup.sh
     bash ./namespace-based/e2e.sh
+    bash ./namespace-based/uninstall.sh
+
+
+    echo "Running e2e tests for virtual multi cluster tenancy"
+    bash ./virtual-multi-cluster/setup.sh
     bash ./virtual-multi-cluster/e2e.sh
 }
 
