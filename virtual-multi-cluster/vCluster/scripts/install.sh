@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-# # Change to the directory of the script
-# cd "$(dirname "$0")"
-
 # Default values
 RELEASE_NAME="my-vcluster"
 NAMESPACE="vcluster"

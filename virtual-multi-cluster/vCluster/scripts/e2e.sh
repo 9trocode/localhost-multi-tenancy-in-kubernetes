@@ -3,9 +3,6 @@
 # Set strict mode
 set -euo pipefail
 
-# Change to the directory of the script
-cd "$(dirname "$0")"
-
 # Colors for output
 GREEN='\033[0;32m'
 RED='\033[0;31m'
