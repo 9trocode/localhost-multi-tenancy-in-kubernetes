@@ -54,7 +54,28 @@ To set up a Kubernetes cluster locally using `kind`, run:
 
 ```bash
 make setup-cluster
-make 
+```
+
+To set up a Kubernetes cluster locally using `k3s`, run:
+
+```bash
+make install_k3s
+```
+
+This command sources `./init.sh` and runs the `install_k3s` function.
+
+### Run E2E Tests
+
+```bash
+make e2e
+```
+
+This command sources `./init.sh` and runs the `cleanup` function.
+
+### Cleanup
+
+```bash
+make cleanup
 ```
 
 ---
