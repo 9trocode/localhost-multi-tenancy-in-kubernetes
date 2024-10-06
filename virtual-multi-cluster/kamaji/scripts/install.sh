@@ -40,23 +40,14 @@ install_cert_manager() {
     success "cert-manager installed successfully"
 }
 
-install_kamaji() {
-    log "Installing Kamaji ${KAMAJI_VERSION}..."
-    
-    # Create kamaji-system namespace
-    kubectl create namespace kamaji-system --dry-run=client -o yaml | kubectl apply -f -
-    
-    # Install Kamaji CRDs
-    kubectl apply -f https://github.com/clastix/kamaji/releases/download/${KAMAJI_VERSION}/crds.yaml
-    
-    # Install Kamaji
-    kubectl apply -f https://github.com/clastix/kamaji/releases/download/${KAMAJI_VERSION}/kamaji.yaml
-    
-    log "Waiting for Kamaji to be ready..."
-    kubectl wait --for=condition=Available deployment --all -n kamaji-system --timeout=300s
-    
-    success "Kamaji installed successfully"
+install_kamaji_from_repo() {
+    log "Installing Kamaji from Helm repository..."
+    helm repo add clastix https://clastix.github.io/charts
+    helm repo update
+    helm install kamaji clastix/kamaji -n kamaji-system --create-namespace
+    success "Kamaji installed from Helm repository"
 }
+
 
 verify_installation() {
     log "Verifying Kamaji installation..."
