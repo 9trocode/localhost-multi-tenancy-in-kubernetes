@@ -1,6 +1,6 @@
 # !/usr/bin/env bash
 
-set -eu
+set -euo pipefail
 
 ZOO_ROOT="$(pwd)/_output"
 # source "lib/init.sh"

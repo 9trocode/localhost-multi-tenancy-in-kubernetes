@@ -1,6 +1,6 @@
 # !/bin/bash
 
-set -eu
+set -euo pipefail
 
 # Change to the directory of the script
 cd "$(dirname "$0")"
