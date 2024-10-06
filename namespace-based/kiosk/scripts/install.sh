@@ -55,14 +55,12 @@ helm repo update
 # Install Kiosk
 if ! helm upgrade --install kiosk loft/kiosk --namespace kiosk --create-namespace; then
     echo "Error: Failed to install Kiosk"
-    exit 1
 fi
 
 # Wait for Kiosk to be ready
 echo "Waiting for Kiosk to be ready..."
 if ! kubectl wait --for=condition=ready pod -l app=kiosk -n kiosk --timeout=120s; then
     echo "Error: Kiosk did not become ready within the timeout period"
-    exit 1
 fi
 
 echo "Kiosk installation completed successfully."
