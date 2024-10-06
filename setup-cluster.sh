@@ -18,9 +18,7 @@ readonly KIND_KUBECONFIG=${KIND_KUBECONFIG:-${HOME}/.kube/config}
 cleanup() {
     rm -rf $ZOO_ROOT/_output
     if kind get clusters | grep "${CLUSTER_NAME}"; then
-        kubectl --context "kind-${CLUSTER_NAME}" delete statefulset --all
-        kubectl --context "kind-${CLUSTER_NAME}" delete deployment --all
-        kubectl --context "kind-${CLUSTER_NAME}" delete validatingwebhookconfigurations --all
+       kind delete
     fi
 }
 
@@ -57,4 +55,3 @@ local_cluster() {
 }
 
 preflight
-local_cluster

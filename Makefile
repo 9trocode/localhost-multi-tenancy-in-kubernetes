@@ -6,5 +6,11 @@ ENVTEST_K8S_VERSION = 1.31
 PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 
 .PHONY: local-cluster
-local-cluster: ## Setup kubezoo a kind cluster locally
-	bash ./setup-cluster.sh
+local-cluster: ## Setup a cluster using kind locally
+	@bash -c 'source ./setup-cluster.sh && local_cluster'
+
+
+.PHONY: cleanup
+cleanup: ## Call the cleanup function from setup-cluster.sh
+	@echo "Running cleanup..."
+	@bash -c 'source ./setup-cluster.sh && cleanup'
