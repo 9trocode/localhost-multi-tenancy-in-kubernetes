@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e # Exit immediately if a command exits with a non-zero status
+set -euo pipefail # Exit immediately if a command exits with a non-zero status, treat unset variables as an error, and propagate pipe failures
 
 # Change to the directory of the script
 cd "$(dirname "$0")"
@@ -42,3 +42,31 @@ if ! kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=capsule -n
     echo "Error: Capsule webhook did not become ready within the timeout period"
     exit 1
 fi
+
+# Install Kiosk
+echo "Installing Kiosk..."
+
+# Add the Helm repository for Kiosk
+helm repo add kiosk https://kiosk-sh.github.io/kiosk-helm-chart
+
+# Update the Helm repositories
+helm repo update
+
+# Install Kiosk
+if ! helm upgrade --install kiosk kiosk/kiosk --namespace kiosk --create-namespace; then
+    echo "Error: Failed to install Kiosk"
+    exit 1
+fi
+
+# Wait for Kiosk to be ready
+echo "Waiting for Kiosk to be ready..."
+if ! kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=kiosk -n kiosk --timeout=120s; then
+    echo "Error: Kiosk did not become ready within the timeout period"
+    exit 1
+fi
+
+echo "Kiosk installation completed successfully."
+
+# You can add additional configuration or verification steps for Kiosk here
+
+echo "Setup completed successfully."
