@@ -47,13 +47,13 @@ fi
 echo "Installing Kiosk..."
 
 # Add the Helm repository for Kiosk
-helm repo add kiosk https://kiosk-sh.github.io/kiosk-helm-chart
+helm repo add loft https://charts.loft.sh
 
 # Update the Helm repositories
 helm repo update
 
 # Install Kiosk
-if ! helm upgrade --install kiosk kiosk/kiosk --namespace kiosk --create-namespace; then
+if ! helm upgrade --install kiosk loft/kiosk --namespace kiosk --create-namespace; then
     echo "Error: Failed to install Kiosk"
     exit 1
 fi
