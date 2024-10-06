@@ -32,4 +32,29 @@ This folder contains resources for implementing virtual clusters and multi-clust
 
 ---
 
+# Project Setup and Usage Guide
+
+## Prerequisites
+
+- Ensure you have the necessary dependencies installed (such as `kind`, `k3s`, `helm` and `kubectl`).
+- The project requires `envtest` with Kubernetes version 1.31. Make sure to download the required assets.
+
+## Environment Variables
+
+- `ZOO_ROOT`: This refers to the root directory of the project and is set to `$(pwd)/_output`.
+- `CLUSTER_NAME`: The cluster name used for local testing. Default: `"localhost-e2e-test"`.
+
+These variables are exported automatically in the Makefile.
+
+## Available Makefile Commands
+
+### 1. Setup a local cluster
+
+To set up a Kubernetes cluster locally using `kind`, run:
+
+```bash
+make local-cluster
+
+---
+
 Feel free to adjust the descriptions or add more details depending on the content of the files.
