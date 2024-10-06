@@ -1,5 +1,7 @@
 # Change to the directory of the script
 cd "$(dirname "$0")"
 
-kubectl apply -f cluster-resource.yaml
-kubectl apply -f virtual-control-plane.yaml
+
+ZOO_ROOT="$(pwd)/_output"
+
+kubectl apply -f $ZOO_ROOT/_output/cluster-resource.yaml

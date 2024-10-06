@@ -2,8 +2,6 @@
 # Set strict mode
 set -euo pipefail
 
-ZOO_ROOT="$(pwd)/_output"
-
 # Change to the directory of the script
 cd "$(dirname "$0")"
 
@@ -51,22 +49,16 @@ wait_for() {
         fi
     done
 }
-
-# Example tests
-run_test "KubeZoo Cluster Resource" \
-    "kubectl apply -f $ZOO_ROOT/_output/setup/quota.yaml"
     
 run_test "KubeZoo Virtual Control Plane" \
     "kubectl apply -f yaml/virtual-control-plane.yaml"
 
-run_test "KubeZoo Cluster Resources" \
-    "kubectl apply -f $ZOO_ROOT/_output/setup/quota.yaml"
+run_test "Create KubeZoo Tenant" \
+    "kubectl apply -f yaml/tenant.yaml"    
 
 # Clean up
 echo "Cleaning up resources..."
 kubectl delete -f yaml/virtual-control-plane.yaml
-kubectl delete -f yaml/cluster-resource.yaml
-kubectl delete -f $ZOO_ROOT/_output/setup/quota.yaml
 
 # Print test summary
 echo "Tests run: $TESTS_RUN"
