@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+# Change to the directory of the script
+cd "$(dirname "$0")"
+
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 YELLOW='\033[0;33m'
@@ -51,7 +54,7 @@ install_kamaji() {
     log "Installing Kamaji from Helm repository..."
     helm repo add clastix https://clastix.github.io/charts
     helm repo update
-    helm install kamaji clastix/kamaji -n kamaji-system --create-namespace
+    helm install kamaji clastix/kamaji -n kamaji-system --create-namespace --values values.yaml
     helm status kamaji -n kamaji-system
     success "Kamaji installed from Helm repository"
 }
