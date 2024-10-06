@@ -7,13 +7,13 @@ PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 
 .PHONY: local-cluster
 local-cluster: ## Setup a cluster using kind locally
-	@bash -c './init.sh && local_cluster'
+	@bash -c 'source ./init.sh && local_cluster'
 
 .PHONY: e2e
 e2e: ## Run Test
-	@bash -c './init.sh && e2e'
-	
+	@bash -c 'source ./init.sh && e2e'
+
 .PHONY: cleanup
 cleanup: ## Call the cleanup function from init.sh
 	@echo "Running cleanup..."
-	@bash -c './init.sh && force_cleanup'
+	@bash -c 'source ./init.sh && force_cleanup'
