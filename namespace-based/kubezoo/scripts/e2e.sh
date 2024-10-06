@@ -63,7 +63,7 @@ run_test "KubeZoo Cluster Resources" \
 # Clean up
 echo "Cleaning up resources..."
 kubectl delete -f yaml/virtual-control-plane.yaml
-kubectl delete -f yaml/yaml/cluster-resource.yaml
+kubectl delete -f yaml/cluster-resource.yaml
 kubectl delete -f $ZOO_ROOT/_output/setup/quota.yaml
 
 # Print test summary
