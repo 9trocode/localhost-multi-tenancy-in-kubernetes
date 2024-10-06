@@ -2,54 +2,54 @@ name: E2E Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   e2e-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: 1.21
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21
 
-    - name: Install dependencies
-      run: |
-        # sudo apt-get install -y docker.io
-        
-        # Install kubectl
-        curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-        chmod +x kubectl
-        sudo mv kubectl /usr/local/bin/
+      - name: Install dependencies
+        run: |
+          # sudo apt-get install -y docker.io
 
-        # Install Kind
-        curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
-        chmod +x ./kind
-        sudo mv ./kind /usr/local/bin/kind
+          # Install kubectl
+          curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
 
-        # Install cfssl and cfssljson
-        go install github.com/cloudflare/cfssl/cmd/cfssl@latest
-        go install github.com/cloudflare/cfssl/cmd/cfssljson@latest
-        echo "$HOME/go/bin" >> $GITHUB_PATH
+          # Install Kind
+          curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+          chmod +x ./kind
+          sudo mv ./kind /usr/local/bin/kind
 
-    - name: Setup local cluster
-      run: make local-cluster
+          # Install cfssl and cfssljson
+          go install github.com/cloudflare/cfssl/cmd/cfssl@latest
+          go install github.com/cloudflare/cfssl/cmd/cfssljson@latest
+          echo "$HOME/go/bin" >> $GITHUB_PATH
 
-    - name: Run E2E tests
-      run: make e2e-tests
+      - name: Setup local cluster
+        run: make local-cluster
 
-    - name: Cleanup
-      if: always()
-      run: make cleanup
+      - name: Run E2E tests
+        run: make e2e
 
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: ${{ github.workspace }}/_output
+      - name: Cleanup
+        if: always()
+        run: make cleanup
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: ${{ github.workspace }}/_output
