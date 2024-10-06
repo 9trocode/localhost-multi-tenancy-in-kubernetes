@@ -48,8 +48,6 @@ if ! kubectl get namespace "$NAMESPACE" &> /dev/null; then
     kubectl create namespace "$NAMESPACE"
 fi
 
-curl -L -o vcluster "https://github.com/loft-sh/vcluster/releases/latest/download/vcluster-linux-amd64" && install -c -m 0755 vcluster /usr/local/bin && rm -f vcluster
-
 
 # Prepare the Helm install command
 HELM_CMD="helm install $RELEASE_NAME loft-sh/vcluster --namespace $NAMESPACE"
