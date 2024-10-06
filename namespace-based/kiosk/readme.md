@@ -1,8 +1,8 @@
  # Using Kiosk for soft multi tenancy 
 
- Kiosk during it's time was the popular go to for Multi Tenancy in Kubernetes but it's no longer actively maintained. My one cent about kiosk, the naming convention should be more relatable & easier to understand
+Kiosk during it's time was the popular go to for Multi Tenancy in Kubernetes but it's no longer actively maintained. My one cent about kiosk, the naming convention should be more relatable & easier to understand.
 
- Learn More about KiOSK here [Manual Setup](https://github.com/loft-sh/kiosk/blob/master/README.md)
+Learn More about KiOSK here [Manual Setup](https://github.com/loft-sh/kiosk/blob/master/README.md)
 
 
 ## Extra: User Management & Authentication
