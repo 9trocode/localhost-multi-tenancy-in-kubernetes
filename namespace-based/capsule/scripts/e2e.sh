@@ -58,10 +58,10 @@ run_test "Capsule View Only" \
     "kubectl apply -f yaml/view-only-tenant.yaml"
 
 run_test "Group of Tenants" \
-    "kubectl apply -f group-of-tenant-profile.yaml"
+    "kubectl apply -f yaml/group-of-tenant-profile.yaml"
     
 run_test "Complete Tenants" \
-    "kubectl apply -f complete-tenant.yaml"
+    "kubectl apply -f yaml/complete-tenant.yaml"
 
 # Clean up
 echo "Cleaning up resources..."

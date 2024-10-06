@@ -4,7 +4,7 @@
 apiVersion: capsule.clastix.io/v1beta2
 kind: Tenant
 metadata:
-  name: oil  # Unique name for this Tenant
+  name: oil-group  # Unique name for this Tenant
 
 spec:
   # Owners section defines who has administrative access to this Tenant

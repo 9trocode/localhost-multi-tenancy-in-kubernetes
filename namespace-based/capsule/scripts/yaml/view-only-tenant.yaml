@@ -4,7 +4,7 @@
 apiVersion: capsule.clastix.io/v1beta2  # Specifies the API version of the Capsule Tenant resource
 kind: Tenant                            # Indicates that this is a Tenant resource
 metadata:
-  name: oil                             # Unique identifier for this Tenant
+  name: oil-view-only                             # Unique identifier for this Tenant
 
 spec:
   # Owners section defines who has administrative access to this Tenant
