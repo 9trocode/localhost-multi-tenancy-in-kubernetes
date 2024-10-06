@@ -4,25 +4,13 @@
 apiVersion: capsule.clastix.io/v1beta2
 kind: Tenant
 metadata:
-  name: default-cluster  # Unique identifier for this Tenant
+  name: default-tenant-sentinel  # Unique identifier for this Tenant
 
 spec:
   # Owners section defines who has administrative access to this Tenant
   owners:
-    - kind: ServiceAccount
-      name: system:serviceaccount:tenant-system:default-workspace
-      # ProxyOperations allow the ServiceAccount to perform specific operations cluster-wide
-      proxyOperations:
-        - kind: IngressClasses
-          operations: [List]
-        - kind: Nodes
-          operations: [List]
-        - kind: StorageClasses
-          operations: [List]
-        - kind: PriorityClasses
-          operations: [List]
-        - kind: PersistentVolumes
-          operations: [List]
+    - name: joe                         # Second owner
+      kind: User 
       # ClusterRoles assigned to the ServiceAccount within this Tenant
       clusterRoles:
         - admin
@@ -60,8 +48,8 @@ spec:
     hostnameCollisionScope: Tenant  # Prevents hostname collisions within the Tenant
 
   # NodeSelector restricts which nodes Pods in this Tenant can be scheduled on
-  nodeSelector:
-    doks.digitalocean.com/node-pool: default-pool
+  # nodeSelector:
+  #   doks.digitalocean.com/node-pool: default-pool
 
   # NetworkPolicies define network isolation rules for the Tenant
   networkPolicies:
@@ -92,12 +80,12 @@ spec:
     scope: Tenant
     items:
       - hard:
-          limits.cpu: "4000m"       # Max CPU limit: 4 cores
-          limits.memory: "8Gi"      # Max memory limit: 8 GB
-          requests.cpu: "2000m"     # Max CPU request: 2 cores
-          requests.memory: "4Gi"    # Max memory request: 4 GB
-          requests.storage: "100Gi" # Max storage request: 100 GB
-          pods: "20"                # Max number of pods: 20
+          limits.cpu: "1000m"       # Max CPU limit: 4 cores
+          limits.memory: "1Gi"      # Max memory limit: 8 GB
+          requests.cpu: "500m"     # Max CPU request: 2 cores
+          requests.memory: "1Gi"    # Max memory request: 4 GB
+          requests.storage: "1Gi" # Max storage request: 100 GB
+          pods: "5"                # Max number of pods: 20
 
   # ImagePullPolicies restrict which pull policies can be used for containers
   imagePullPolicies:
