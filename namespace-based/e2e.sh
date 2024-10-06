@@ -9,7 +9,7 @@ cd "$(dirname "$0")"
 SETUP_SCRIPTS=(
     "./capsule/scripts/e2e.sh"
     "./kiosk/scripts/e2e.sh"
-    # "./kubezoo/scripts/e2e.sh"
+    "./kubezoo/scripts/e2e.sh"
 )
 
 # Function to run a script if it exists
