@@ -55,6 +55,7 @@ local_cluster() {
     kubectl get nodes
 
     bash ./namespace-based/setup.sh
+    bash ./virtual-multi-cluster/setup.sh
 
 
 
@@ -65,6 +66,7 @@ local_cluster() {
 
 e2e() {
     bash ./namespace-based/e2e.sh
+    bash ./virtual-multi-cluster/e2e.sh
 }
 
 preflight
