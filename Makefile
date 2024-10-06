@@ -9,6 +9,9 @@ PROJECT_DIR := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))
 local-cluster: ## Setup a cluster using kind locally
 	@bash -c 'source ./setup-cluster.sh && local_cluster'
 
+.PHONY: e2e
+e2e: ## Run Test
+	@bash -c 'source ./setup-cluster.sh && e2e'
 
 .PHONY: cleanup
 cleanup: ## Call the cleanup function from setup-cluster.sh
