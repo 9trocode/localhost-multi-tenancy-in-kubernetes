@@ -54,7 +54,7 @@ run_test "Create namespace for vcluster" \
 
 # Install vcluster
 run_test "Install vcluster" \
-    "curl -L -o vcluster "https://github.com/loft-sh/vcluster/releases/latest/download/vcluster-linux-amd64" && install -c -m 0755 vcluster /usr/local/bin && rm -f vcluster"
+    "curl -L -o vcluster-cli "https://github.com/loft-sh/vcluster/releases/latest/download/vcluster-linux-amd64" && install -c -m 0755 vcluster-cli /usr/local/bin && rm -f vcluster"
     "vcluster create ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE}"
 
 # Wait for vcluster to be ready
