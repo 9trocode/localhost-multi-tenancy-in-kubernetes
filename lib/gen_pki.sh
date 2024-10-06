@@ -201,7 +201,7 @@ EOF
 
     caBase64="$(base64file ${KUBEZOO_DIR}/ca.pem)"
     mkdir -p _output/setup
-    # sed "s/{caBundle}/${caBase64}/g" config/setup/quota.tmpl.yaml >_output/setup/quota.yaml
+    sed "s/{caBundle}/${caBase64}/g" namespace-based/kubezoo/scripts/cluster-resource.yaml >_output/setup/quota.yaml
 }
 
 create_pki_secret() {
