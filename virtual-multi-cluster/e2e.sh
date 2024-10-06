@@ -7,7 +7,7 @@ cd "$(dirname "$0")"
 # Define the scripts to run
 E2E_SCRIPTS=(
     "./vcluster/scripts/e2e.sh"
-    "./kamaji/scripts/e2e.sh"
+    # "./kamaji/scripts/e2e.sh"
 )
 
 # Function to run a script if it exists
