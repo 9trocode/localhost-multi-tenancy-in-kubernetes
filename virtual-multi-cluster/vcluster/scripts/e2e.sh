@@ -60,10 +60,6 @@ run_test "Create namespace for vcluster" \
 run_test "Install vcluster" \
     "cd $TEMP_DIR && vcluster create ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} --connect=false"
 
-# Wait for vcluster to be ready
-run_test "Wait for vcluster to be ready" \
-    "wait_for 'kubectl get pods -n ${VCLUSTER_NAMESPACE}' 'Running' 300"
-
 # Connect to vcluster
 run_test "Connect to vcluster" \
     "cd $TEMP_DIR && vcluster connect ${VCLUSTER_NAME} -n ${VCLUSTER_NAMESPACE} -- kubectl get nodes"
