@@ -1,12 +1,11 @@
-# !/bin/bash
-
+#!/bin/bash
 set -euo pipefail
 
 # Change to the directory of the script
 cd "$(dirname "$0")"
 
 # Define the scripts to run
-SETUP_SCRIPTS=(
+E2E_SCRIPTS=(
     "./capsule/scripts/e2e.sh"
     "./kiosk/scripts/e2e.sh"
     "./kubezoo/scripts/e2e.sh"
@@ -14,31 +13,51 @@ SETUP_SCRIPTS=(
 
 # Function to run a script if it exists
 run_script() {
-    echo "Checking for script: $1"
-    if [ -f "$1" ]; then
-        echo "Running $1..."
-        if bash "$1"; then
-            echo "$1 completed successfully."
+    local script="$1"
+    echo "Checking for script: $script"
+    if [ -f "$script" ]; then
+        echo "Running $script..."
+        if bash "$script"; then
+            echo "$script completed successfully."
+            return 0
         else
-            echo "Warning: $1 failed with exit code $?."
+            local exit_code=$?
+            echo "Error: $script failed with exit code $exit_code."
+            return $exit_code
         fi
     else
-        echo "Warning: $1 not found. Skipping..."
+        echo "Warning: $script not found. Skipping..."
         echo "Current directory: $(pwd)"
         echo "Directory contents:"
-        # ls -R
+        ls -la
+        return 0  # Not finding a script is not considered a failure
     fi
-    echo
 }
 
 # Main execution
-echo "Starting setup process..."
-echo "Current working directory: $(pwd)"
-echo "Directory contents:"
-ls
+main() {
+    echo "Starting E2E test process..."
+    echo "Current working directory: $(pwd)"
+    echo "Directory contents:"
+    ls -la
 
-for script in "${SETUP_SCRIPTS[@]}"; do
-    run_script "$script"
-done
+    local overall_exit_code=0
+    for script in "${E2E_SCRIPTS[@]}"; do
+        if ! run_script "$script"; then
+            overall_exit_code=1
+            echo "Error encountered in $script. Continuing with next script..."
+        fi
+    done
 
-echo "Setup process completed."
+    if [ $overall_exit_code -eq 0 ]; then
+        echo "All E2E tests completed successfully."
+    else
+        echo "E2E test process completed with errors."
+    fi
+
+    return $overall_exit_code
+}
+
+# Run main function
+main
+exit $?
