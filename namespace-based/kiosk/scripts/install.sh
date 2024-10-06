@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e  # Exit immediately if a command exits with a non-zero status
+set -e # Exit immediately if a command exits with a non-zero status
 
 # Change to the directory of the script
 cd "$(dirname "$0")"
@@ -22,6 +22,13 @@ if [ -f "./auth-check.sh" ]; then
     source "./auth-check.sh"
 else
     echo "Warning: auth-check.sh not found. Skipping authentication check."
+fi
+
+# Check Capsule webhook status
+echo "Checking Capsule webhook status..."
+if ! kubectl get pods -n capsule-system -l app=capsule-webhook -o jsonpath='{.items[0].status.phase}' | grep -q "Running"; then
+    echo "Error: Capsule webhook is not running. Please check the Capsule installation."
+    exit 1
 fi
 
 # Create a dedicated namespace for Kiosk
