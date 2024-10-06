@@ -60,7 +60,7 @@ fi
 
 # Wait for Kiosk to be ready
 echo "Waiting for Kiosk to be ready..."
-if ! kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=kiosk -n kiosk --timeout=120s; then
+if ! kubectl wait --for=condition=ready pod -l app=kiosk -n kiosk --timeout=120s; then
     echo "Error: Kiosk did not become ready within the timeout period"
     exit 1
 fi
