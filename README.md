@@ -14,7 +14,7 @@ Explore namespace-based multi-tenancy strategies:
 
 ### 🌋 Grand Line: virtual-multi-cluster/
 
-Discover advanced multi-tenancy with virtual and multi-cluster setups:
+Discover advanced multi-tenancy with virtual and multi-cluster tools:
 
 - **Capsule Proxy**: Enhances multi-tenant management in virtual cluster environments.
 - **Gardener**: Manages Kubernetes clusters across multiple cloud providers.
