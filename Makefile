@@ -13,4 +13,4 @@ local-cluster: ## Setup a cluster using kind locally
 .PHONY: cleanup
 cleanup: ## Call the cleanup function from setup-cluster.sh
 	@echo "Running cleanup..."
-	@bash -c 'source ./setup-cluster.sh && cleanup'
+	@bash -c 'source ./setup-cluster.sh && force_cleanup'

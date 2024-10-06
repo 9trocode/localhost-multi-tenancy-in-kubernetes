@@ -2,8 +2,8 @@
 
 set -eu
 
-ZOO_ROOT="$(pwd)"
-source "lib/init.sh"
+ZOO_ROOT="$(pwd)/_output"
+# source "lib/init.sh"
 
 readonly REQUIRED_CMD=(
     go
@@ -15,11 +15,15 @@ readonly REQUIRED_CMD=(
 readonly CLUSTER_NAME="localhost-e2e-test"
 readonly KIND_KUBECONFIG=${KIND_KUBECONFIG:-${HOME}/.kube/config}
 
-cleanup() {
+force_cleanup() {
+    kind delete clusters "${CLUSTER_NAME}"
     rm -rf $ZOO_ROOT/_output
-    if kind get clusters | grep "${CLUSTER_NAME}"; then
-       kind delete
-    fi
+    exit 0
+}
+
+cleanup() {
+    kind delete clusters "${CLUSTER_NAME}"
+    rm -rf $ZOO_ROOT/_output
 }
 
 cleanup_on_err() {
@@ -38,18 +42,24 @@ preflight() {
 local_cluster() {
     echo "Creating the kind cluster $CLUSTER_NAME..."
     if kind get clusters | grep "${CLUSTER_NAME}"; then
-        cleanup
+        # cleanup
+        # kind create cluster --name "${CLUSTER_NAME}"
+        continue
     else
         kind create cluster --name "${CLUSTER_NAME}"
     fi
     kubectl config use-context "kind-${CLUSTER_NAME}"
 
     echo "Generating PKI and context..."
-    bash "${ZOO_ROOT}"/lib/gen_pki.sh gen_pki_setup_ctx
+    bash lib/gen_pki.sh gen_pki_setup_ctx
+
+    kubectl get nodes
+
+    bash ./namespace-based/setup.sh
 
 
 
-    how to use the context
+    # how to use the context
     # kubectl --context "kind-${CLUSTER_NAME}" port-forward svc/kubezoo 6443:6443
 
 }
