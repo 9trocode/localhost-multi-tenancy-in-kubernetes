@@ -7,8 +7,9 @@ cd "$(dirname "$0")"
 # Define the scripts to run
 SETUP_SCRIPTS=(
     "./capsule/scripts/install.sh"
-    "./kiosk/scripts/install.sh"
     "./kubezoo/scripts/install.sh"
+    "./kiosk/scripts/install.sh"
+
 )
 
 # Function to run a script if it exists
