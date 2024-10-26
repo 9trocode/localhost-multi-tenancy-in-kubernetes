@@ -1,4 +1,5 @@
 # !/usr/bin/env bash
+# This script demonstrates that complex logic can also be implemented in bash
 
 set -euo pipefail
 
@@ -6,10 +7,10 @@ ZOO_ROOT="$(pwd)/_output"
 # source "lib/init.sh"
 
 readonly REQUIRED_CMD=(
-    go
-    docker
-    kubectl
-    kind
+go
+docker
+kubectl
+kind
 )
 
 readonly CLUSTER_NAME="localhost-e2e-test"
@@ -35,7 +36,7 @@ cleanup_on_err() {
 preflight() {
     echo "Preflight Check..."
     for bin in "${REQUIRED_CMD[@]}"; do
-        command -v ${bin} >/dev/null 2>&1 || (echo "$bin is not installed" && exit 0)
+        command -v ${bin} >/dev/null 2 >&1 || (echo "$bin is not installed" && exit 0)
     done
 }
 
